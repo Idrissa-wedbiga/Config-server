@@ -1,0 +1,23 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: 192.168.11.192
+    ip-address: 192.168.11.192
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://192.168.11.192:8761/eureka/  # ← IP complète !
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    enable-self-preservation: false
+    peer-eureka-nodes-update-interval-ms: 600000
+    peer-node-connect-timeout-ms: 200
+    peer-node-read-timeout-ms: 200

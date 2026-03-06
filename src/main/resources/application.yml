@@ -1,0 +1,26 @@
+server:
+  port: 8888           # Port standard du Config Server
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        # Option A : Lire les configs depuis un dossier local
+        native:
+          search-locations: classpath:/configurations
+        # Option B : Lire depuis un repo Git (recommandé en prod)
+        # git:
+        #   uri: https://github.com/ton-equipe/configurations
+        #   default-label: main
+
+  profiles:
+    active: native       # Utiliser les fichiers locaux
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info

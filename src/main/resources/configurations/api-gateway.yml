@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    loadbalancer:
+      enabled: false
+    gateway:
+      mvc:
+        routes:
+          - id: auth-service
+            uri: https://auth-service-d6zt.onrender.com
+            predicates:
+              - Path=/api/auth/**
+            filters:
+              - StripPrefix=1
+
+          - id: auth-service-docs
+            uri: https://auth-service-d6zt.onrender.com
+            predicates:
+              - Path=/api/auth/api-docs
+            filters:
+              - StripPrefix=2
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
+
+jwt:
+  secret: cle-secrete-partagee-256bits
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, gateway, metrics
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Auth Service
+        url: https://auth-service-d6zt.onrender.com/api-docs
+  api-docs:
+    enabled: true
