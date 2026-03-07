@@ -8,10 +8,6 @@ spring:
   cloud:
     config:
       server:
-        # Option A : Lire les configs depuis un dossier local
-        #native:
-#          search-locations: classpath:/configurations
-        # Option B : Lire depuis un repo Git (recommandé en prod)
         git:
            uri: https://github.com/Idrissa-wedbiga/Config-server
         #   default-label: main
