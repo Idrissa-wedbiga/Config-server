@@ -7,13 +7,12 @@ spring:
 
 eureka:
   instance:
-    hostname: eureka-server.onrender.com
+    hostname: eureka-server-exlu.onrender.com  # ← corrigé !
     secure-port-enabled: true
     non-secure-port-enabled: false
-
+    secure-port: 443
   client:
     register-with-eureka: false
     fetch-registry: false
-
   server:
     enable-self-preservation: false

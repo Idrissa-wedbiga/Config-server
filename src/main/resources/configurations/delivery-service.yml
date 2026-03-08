@@ -7,4 +7,11 @@ eureka:
     service-url:
       defaultZone: https://eureka-server-exlu.onrender.com/eureka/
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+    hostname: ${RENDER_EXTERNAL_HOSTNAME:localhost}
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: 443
+    status-page-url: https://${eureka.instance.hostname}/actuator/info
+    health-check-url: https://${eureka.instance.hostname}/actuator/health
+    home-page-url: https://${eureka.instance.hostname}/

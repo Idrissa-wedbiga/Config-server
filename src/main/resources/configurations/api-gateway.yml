@@ -9,27 +9,57 @@ spring:
       mvc:
         routes:
           - id: auth-service
-#            uri: https://auth-service-d6zt.onrender.com
             uri: lb://auth-service
             predicates:
               - Path=/api/auth/**
             filters:
               - StripPrefix=1
 
-          - id: auth-service-docs
-#            uri: https://auth-service-d6zt.onrender.com
-            uri: lb://auth-service
+          - id: billing-service
+            uri: lb://billing-service        # ← uri manquant !
             predicates:
-              - Path=/api/auth/api-docs
+              - Path=/api/billing/**          # ← faute corrigée
             filters:
-              - StripPrefix=2
+              - StripPrefix=1
+
+          - id: delivery-service
+            uri: lb://delivery-service        # ← uri manquant !
+            predicates:
+              - Path=/api/delivery/**
+            filters:
+              - StripPrefix=1
+
+          - id: product-service
+            uri: lb://product-service         # ← uri manquant !
+            predicates:
+              - Path=/api/products/**         # ← products avec s
+            filters:
+              - StripPrefix=1
+
+          - id: stock-service
+            uri: lb://stock-service           # ← uri manquant !
+            predicates:
+              - Path=/api/stock/**
+            filters:
+              - StripPrefix=1
+
+          # Swagger docs
+  swagger-ui:
+    urls:
+      - name: Auth Service
+        url:
 
 eureka:
   client:
     service-url:
-      defaultZone: https://eureka-server.onrender.com/eureka
+      defaultZone: https://eureka-server-exlu.onrender.com/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+    secure-port: 443
 
 jwt:
   secret: cle-secrete-partagee-256bits
@@ -45,6 +75,16 @@ springdoc:
     path: /swagger-ui.html
     urls:
       - name: Auth Service
+        #url: /api/auth/api-docs  # ← via la Gateway
         url: https://auth-service-d6zt.onrender.com/api-docs
+      - name: Product Service
+        url: /api/products/v3/api-docs
+      - name: Stock Service
+        url: /api/stock/v3/api-docs
+      - name: Billing Service
+        url: /api/billing/v3/api-docs
+      - name: Delivery Service
+        #url: /api/delivery/v3/api-docs
+        url: https://servicelivraison.pythonanywhere.com/apidocs/
   api-docs:
     enabled: true
