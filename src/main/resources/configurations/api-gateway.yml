@@ -43,11 +43,7 @@ spring:
             filters:
               - StripPrefix=1
 
-          # Swagger docs
-  swagger-ui:
-    urls:
-      - name: Auth Service
-        url:
+
 
 eureka:
   client:
@@ -56,7 +52,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+    hostname: ${HOSTNAME:api-gateway}
     non-secure-port-enabled: false
     secure-port-enabled: true
     secure-port: 443
