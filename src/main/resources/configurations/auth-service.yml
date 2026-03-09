@@ -7,11 +7,10 @@ eureka:
     service-url:
       defaultZone: https://eureka-server-exlu.onrender.com/eureka/
   instance:
-    prefer-ip-address: false
-    hostname: ${RENDER_EXTERNAL_HOSTNAME:localhost}
-    secure-port-enabled: true
-    non-secure-port-enabled: false
-    secure-port: 443
-    status-page-url: https://${eureka.instance.hostname}/actuator/info
-    health-check-url: https://${eureka.instance.hostname}/actuator/health
-    home-page-url: https://${eureka.instance.hostname}/
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    non-secure-port-enabled: true
+    secure-port-enabled: false
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/info
+    health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+    home-page-url: http://${spring.cloud.client.ip-address}:${server.port}/
