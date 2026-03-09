@@ -11,6 +11,7 @@ spring:
         git:
            uri: https://github.com/Idrissa-wedbiga/Config-server
            default-label: main
+           search-paths: src/main/resources/configurations
         clone-on-start: true
 
 management:
