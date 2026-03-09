@@ -9,7 +9,7 @@ spring:
       mvc:
         routes:
           - id: auth-service
-            uri: lb://auth-service
+            uri: https://auth-service-d6zt.onrender.com
             predicates:
               - Path=/api/auth/**
             filters:
@@ -23,14 +23,14 @@ spring:
               - StripPrefix=1
 
           - id: delivery-service
-            uri: lb://delivery-service
+            uri: https://servicelivraison.pythonanywhere.com
             predicates:
               - Path=/api/delivery/**
             filters:
               - StripPrefix=1
 
           - id: product-service
-            uri: lb://product-service
+            uri: https://product-service-production-2d82.up.railway.app
             predicates:
               - Path=/api/products/**
             filters:
@@ -48,6 +48,9 @@ spring:
           '[/**]':
             allowed-origins:
               - "http://localhost:4200"
+              - "https://product-service-production-2d82.up.railway.app"
+              - "https://servicelivraison.pythonanywhere.com"
+              - "https://auth-service-d6zt.onrender.com"
 #              - "https://votre-app-angular.onrender.com"
             allowed-methods:
               - GET
