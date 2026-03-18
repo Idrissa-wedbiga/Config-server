@@ -65,12 +65,12 @@ eureka:
   client:
     service-url:
       defaultZone: https://eureka-server-exlu.onrender.com/eureka/
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
     instance-id: ${spring.application.name}:${server.port}
-    non-secure-port-enabled: true
+    non-secure-port-enabled: false
     secure-port-enabled: false
 
 jwt:

@@ -9,7 +9,7 @@ eureka:
   instance:
     prefer-ip-address: false
     hostname: ${RENDER_EXTERNAL_HOSTNAME:localhost}
-    secure-port-enabled: true
+    secure-port-enabled: false
     non-secure-port-enabled: false
     secure-port: 443
     status-page-url: https://${eureka.instance.hostname}/actuator/info
